@@ -1,5 +1,4 @@
 from selenium import webdriver
-import time
 
 driver = webdriver.Chrome (executable_path="C:\Drivers\chromedriver_win32\chromedriver.exe")
 
@@ -33,6 +32,22 @@ for i in links:
     driver.implicitly_wait(5)
     try:
         if driver.find_element_by_name('Host Unavailable'):
+            driver.get("https://mail.google.com/mail/u/0/#inbox?compose=new")
+            driver.find_element_by_name('to').send_keys("***")  # enter email address of webpage.
+            driver.find_element_by_name('subjectbox').send_keys("regarding webpages which are down.")
+            driver.find_element_by_xpath('//*[@id=":rw"]').send_keys("This is automated email generated to inform you that your {} webpage is down at the moment.\n Please look after it.\n Thank you.".format(i))
+            driver.find_element_by_xpath('//*[@id=":tb"]').click()
+        elif driver.find_element_by_name('Not defined'):
+            driver.get("https://mail.google.com/mail/u/0/#inbox?compose=new")
+            driver.find_element_by_name('to').send_keys("***")  # enter email address of webpage.
+            driver.find_element_by_name('subjectbox').send_keys("regarding webpages which are down.")
+            driver.find_element_by_xpath('//*[@id=":rw"]').send_keys("This is automated email generated to inform you that your {} webpage is down at the moment.\n Please look after it.\n Thank you.".format(i))
+            driver.find_element_by_xpath('//*[@id=":tb"]').click()
+        else:
+            pass
+
+    except:
+        pass
 
 
 
